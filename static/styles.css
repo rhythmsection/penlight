@@ -1,0 +1,54 @@
+@font-face {
+    font-family: SilkScreen;
+    src: url(slkscr.ttf);
+}
+
+h1 {
+	font-size: 24pt;
+
+}
+
+h2 {
+	font-size: 16pt;
+
+}
+
+body {
+	font-family: SilkScreen;
+	padding: 10px;
+	margin: 0 0 0 0;
+	display: block;
+}
+
+#title{
+    	font-family: SilkScreen;
+		font-size: 16pt;
+		color: #FFFFFF;
+		background-color: #A9A9A9;
+		padding: 5px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: black;
+
+}
+
+#results{
+	visibility: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+}
+
+.quote{
+		font-size: 8pt;
+		background-color: #E5E4E2;
+		padding-left: 10px;
+		padding-right: 10px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: black;
+		margin-top: 5px;
+		margin-bottom: 5px;
+		padding: 5px;
+		white-space: pre-wrap;
+}

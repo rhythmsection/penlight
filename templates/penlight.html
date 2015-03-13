@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/static/styles.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <title>Penlight v1.0</title>
+</head>
+<body>
+    <h1>Fire up the PENLIGHT accountabili-buddy.</h1>
+    <h2>Choose a subject to search for and Penlight will return recent quotes from Congress about that topic. </h2>
+    <div>
+    <form id="get_user_phrase" action="/user_phrase">
+        Subject: <input type="text" name="userPhrase" id="user_phrase_field" placeholder=" ">
+        <button type="submit">Submit</button>
+    </form>
+    </div>
+
+    <div id="results"></div>
+
+	<script>
+	function appendResults(evt) {
+		evt.preventDefault();
+		$('#results').empty();
+		var url = '/user_phrase?user_phrase=' + $("#user_phrase_field").val();
+	    $.get(url, function(data){
+	    	for (i = 0; i < data.quotes.length; i++){
+            	$('#results').append("<div class='quote'>" + data.speakers[i] + "<p>" + data.quotes[i] + "</div></div>");
+       		} 
+		});
+		$('#results').css('visibility', 'visible');
+	};
+
+
+
+	$("#get_user_phrase").on('submit', appendResults);
+
+
+</script>
+</body>
+</html>
