@@ -22,3 +22,10 @@ def basic_phrase_query(data):
     all_the_information.append(quote_range)
 
     return all_the_information
+
+def top_words_by_state(data):
+    top_words_data = {}
+    for n in range(0, len(data)):
+        top_words_data[data[n]['ngram'].encode('utf-8')] = data[n]['count']
+    return top_words_data
+
