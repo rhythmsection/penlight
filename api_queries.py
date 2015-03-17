@@ -29,3 +29,16 @@ def top_words_by_state(data):
         top_words_data[data[n]['ngram'].encode('utf-8')] = data[n]['count']
     return top_words_data
 
+def get_legislators_by_state(data):
+    legislator_data = {}
+    for n in range(0, len(data['results'])):
+        legis_dict = { 'name': data['results'][n]['title'].encode('utf-8') + " " + data['results'][n]['first_name'].encode('utf-8') + " " + data['results'][n]['last_name'].encode('utf-8'), 'party': data['results'][n]['party'].encode('utf-8'), 'gender': data['results'][n]['gender'].encode('utf-8'), 'birthday': data['results'][n]['birthday'].encode('utf-8'),'chamber': data['results'][n]['chamber'].encode('utf-8'), 'email': data['results'][n]['oc_email'].encode('utf-8') }
+        legislator_data[data['results'][n]['bioguide_id'].encode('utf-8')] = legis_dict
+    return legislator_data
+
+def find_words_by_legislator(data):
+    legislator_words_data = {}
+    for n in range(0, len(data)):
+        top_words_data[data[n]['ngram'].encode('utf-8')] = data[n]['count']
+    return legislator_words_data
+

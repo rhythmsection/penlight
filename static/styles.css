@@ -39,7 +39,9 @@ body {
 	margin-top: 10px;
 }
 
+
 #top_words{
+	float:left;
 	visibility: hidden;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -47,7 +49,45 @@ body {
 	border-style: solid;
 	border-width: 1px;
 	border-color: black;
-	width: 200px;
+	width: 250px;
+}
+
+#senators{
+	float:left;
+	background-color: #A9A9A9;
+	visibility: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding-bottom: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	width: 400px;
+}
+
+.senator:hover{
+background: gray;
+}
+
+
+#congressmen{
+	float:left;
+	visibility: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	width: 400px;
+}
+
+.congressman:hover{
+background: #D3D3D3;
 }
 
 .quote{

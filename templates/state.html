@@ -67,12 +67,14 @@
     </form>
     </div>
 
-    <div id="top_words"></div>
+    <div id="state_info_1"><div id="top_words"></div>
+    <div id="legislators"><div id="senators"></div><div id="congressmen"></div></div></div>
 
 <script>
 	function appendStateWords(evt) {
 		evt.preventDefault();
 		$('#top_words').empty();
+		$('#top_words').append("<p><h2>Most Used Words</h2></p>");
 		var url = '/user_state?user_state=' + $("#user_state_field").val();
 	    $.get(url, function(data){
 	    	for (item in data){
@@ -82,9 +84,46 @@
 		$('#top_words').css('visibility', 'visible');
 	};
 
-
+	function appendStateLegislators(evt) {
+		evt.preventDefault();
+		var url = '/state_legislators?user_state=' + $("#user_state_field").val();
+		$('#senators').empty();
+		$('#congressmen').empty();
+	    $.get(url, function(data){
+	    	$('#senators').append("<p><h2>SENATORS</h2></p>");
+	    	$('#congressmen').append("<p><h2>CONGRESSMEN<h2></p>");
+	    	for (item in data){
+	    		if(data[item].chamber == "senate"){
+		    		if (data[item].party == "R"){
+		    			$('#senators').append("<div class='senator'><a></a>" + data[item].name + " - (Republican)</div>");
+		    		}
+		    		else if (data[item].party == "D"){
+		    			$('#senators').append("<div class='senator'><a></a>" + data[item].name + " - (Democrat)</div>");
+		    		}
+		    		else {
+		    			$('#senators').append("<div class='senator'><a></a>" + data[item].name + " - (Independent/Other)</div>");
+		    		}
+	    		}
+	    		else if(data[item].chamber == "house"){
+		    		if (data[item].party == "R"){
+	    				$('#congressmen').append("<div class='congressman'><a></a>" + data[item].name + " - (Republican)</div>");
+		    		}
+		    		else if (data[item].party == "D"){
+	    				$('#congressmen').append("<div class='congressman'><a></a>" + data[item].name + " - (Democrat)</div>");
+		    		}
+		    		else {
+	    				$('#congressmen').append("<div class='congressman'><a></a>" + data[item].name + " - (Independent/Other)</div>");
+		    		}
+	    		}
+	    	}
+		})
+		$('#legislators').css('visibility', 'visible');
+		$('#senators').css('visibility', 'visible');
+		$('#congressmen').css('visibility', 'visible');
+	}
 
 	$("#get_user_state").on('submit', appendStateWords);
+	$("#get_user_state").on('submit', appendStateLegislators);
 
 
 </script>

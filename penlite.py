@@ -51,6 +51,41 @@ def state_search_function():
     information = api_queries.top_words_by_state(data)
     return jsonify(information)
 
+@app.route('/state_legislators')
+def find_state_legislators():
+    user_state = request.args.get('user_state')
+
+    query_params = {    
+                        'apikey': 'ed7d3072124947d1b3fdf8fb1e89e61f',
+                        'per_page': 'all',
+                        'state': user_state
+                    }
+    endpoint = "https://congress.api.sunlightfoundation.com/legislators"
+    response = requests.get(endpoint, params=query_params)
+    data = response.json()
+    information = api_queries.get_legislators_by_state(data)
+
+    return jsonify(information)
+
+@app.route('/legislator_words')
+def legislator_words():
+    legislator_id = request.args.get('legislator_id')
+
+    query_params = {    
+                        'apikey': 'ed7d3072124947d1b3fdf8fb1e89e61f',
+                        'per_page': 10,
+                        'entity_type': 'legislator',
+                        'entity_value': legislator_id
+                    }
+
+    endpoint = "http://capitolwords.org/api/phrases.json"
+    response = requests.get(endpoint, params=query_params)
+    data = response.json()
+
+    information = api_queries.find_words_by_legislator(data)
+    return jsonify(information)
+
+
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads" our web app
